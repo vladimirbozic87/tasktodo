@@ -1,0 +1,31 @@
+html, body { height: 100%;}
+
+body { padding-top: 70px;}
+
+#wrapper{ padding-bottom: 150px; overflow:auto; min-height: 100%;}
+
+#footer {
+
+position: relative;
+height: 100px;
+width: 100%;
+background-color: #222222;
+color: white;
+margin-top: -100px;
+clear:both;
+padding-top:30px;
+}
+
+.container-fluid {
+  /*margin-right: auto;
+  margin-left: auto;*/
+  /*margin: -15px;*/
+  /*max-width: 100%;*/ /* or 950px */
+}
+
+.form-box-fieldset{
+	background-color:rgba(255,255,255,.8);
+	border-radius: 10px; 
+	box-shadow: 0 0 15px black; 
+	padding: 10px 50px 50px 50px;
+}
