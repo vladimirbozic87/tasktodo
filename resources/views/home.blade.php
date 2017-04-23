@@ -113,7 +113,7 @@
 
          <div class="col-lg-12" style="height:30px;"><hr></div>
          <div class="col-lg-12">
-            <h1 class="text-center" style="color: white; text-shadow: 2px 2px 8px #000000;">Follow the development of its project on the easiest way so far12</h1>
+            <h1 class="text-center" style="color: white; text-shadow: 2px 2px 8px #000000;">Follow the development of its project on the easiest way so far123</h1>
          </div>
          <div class="col-lg-12" style="height:30px;"><hr></div>
          <div class="col-lg-12" style="height:30px;"></div>
