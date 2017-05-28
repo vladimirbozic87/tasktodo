@@ -4,11 +4,15 @@
 	   <meta charset="UTF-8">
 	   <title>tasktodo</title>
 
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+
        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
        <link rel="stylesheet" href="/tasktodo/public/css/navSideMenu.css">
+
+       <link rel="stylesheet" href="/tasktodo/public/css/steps.css">
 
        <link rel="stylesheet" href="/tasktodo/public/css/custome.css">
 
@@ -16,40 +20,34 @@
 
        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-       <script>/*
-          $(document).ready(function() {
+       <script>
 
-             var docHeight = $(window).height();
+           $(document).ready(function(){
+              $(".collapsed").click(function(){
+              $("#products, #service, #new").collapse('hide');
+              });
+           });
 
-             var wrapperHeight = $("#wrapper").height()+170;
-
-             if(docHeight > wrapperHeight){
-
-               var paddingBottom = docHeight - wrapperHeight;
-
-                $("#wrapper").css('padding-bottom', paddingBottom +'px');
-             }
-
-          });
-
-        $(window).on('resize', function () {
-            var docHeight = $(window).height();
-
-            var wrapperHeight = $("#wrapper").height()+170;
-
-            if(docHeight > wrapperHeight){
-
-              var paddingBottom = docHeight - wrapperHeight;
-
-               $("#wrapper").css('padding-bottom', paddingBottom +'px');
-            }
-
-        });*/
        </script>
+
+       <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
+       <link href="/tasktodo/public/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+		   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  		 <script src="/tasktodo/public/js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
+  		 <script src="/tasktodo/public/js/plugins/sortable.min.js" type="text/javascript"></script>
+  		 <script src="/tasktodo/public/js/plugins/purify.min.js" type="text/javascript"></script>
+  		 <script src="/tasktodo/public/js/fileinput.min.js"></script>
+  		 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+  	   <script src="/tasktodo/public/themes/fa/theme.js"></script>
+
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
     </head>
 
-    @if(Route::is('home') || Route::is('auth.signin') || Route::is('auth.signup'))
+    <!--Route::is('home') || Route::is('auth.signin') || Route::is('auth.signup')-->
+
+    @if(!Auth::check())
 
       <style>
         body  {
@@ -60,35 +58,23 @@
           background-size: cover;
         }
       </style>
-  
+
     @endif
 
     <body>
 
        @include('templates.partials.navigation')
 
-<!--<div class="container-fluid" id="wrapper"  style="height:100%">
-<div class="row" style="height:100%">
-<div class="col-lg-2" style="border: 2px solid orange; height:100%">-->
-
        @if(Auth::check())
           @include('templates.partials.navSideMenu')
        @endif
 
-
-<!--</div>
-<div class="col-lg-8" style="border: 2px solid yellow;">-->
-
+       <!--<div class="container-fluid" id="wrapper">-->
        <div class="container" id="wrapper">
-<!--<div class="container-fluid">-->
           @include('templates.partials.alert')
           @yield('content')
        </div>
 
-<!--</div>
-</div>
-</div>-->
-       
        <div id="footer">
          <div class="col-lg-4 col-lg-offset-4 text-center">
            <h4 class="text-muted">Copyright (c) 2017</h4>

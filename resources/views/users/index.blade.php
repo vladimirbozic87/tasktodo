@@ -1,16 +1,19 @@
 @extends('templates.default')
 
 @section('content')
+
+<div class="left-margin-content">
+
+@include('templates.partials.steps')
+
+<hr>
+
+   <h3>Create Users</h3>
+
     <div class="row">
 	    <div class="col-lg-6">
 
-          <br>
-          <div class="form-box-fieldset">
-
-          <h3>Sign up</h3>
-          <br>
-
-	        <form class="form-vertical" role="form" method="post" action="{{ route('auth.signup') }}">
+	        <form class="form-vertical" role="form" method="post" action="{{ route('users.index') }}">
 	            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 	                <label for="email" class="control-label">Your email address</label>
 	                <input type="text" name="email" class="form-control" id="email" value="{{ Request::old('email') ?: '' }}">
@@ -76,13 +79,13 @@
 	            </div>
 
 	            <div class="form-group">
-	                <button type="submit" class="btn btn-primary">Sign up</button>
+	                <button type="submit" class="btn btn-primary">Create</button>
 	            </div>
 	            <input type="hidden" name="_token" value="{{ Session::token() }}">
 	        </form>
 
-         </div>
-
 	    </div>
     </div>
+
+</div>
 @stop

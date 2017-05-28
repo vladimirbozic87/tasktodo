@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="row">
-      <div class="col-lg-12" style="height:50px;"></div>
-         <div class="col-md-3 col-lg-4 col-md-offset-1 col-lg-offset-0">
+         <div class="col-lg-12" style="height:50px;"></div>
+         <div class="col-lg-4">
             <div class="panel panel-default" style="box-shadow: 0 0 15px black;">
                <div class="panel-heading">Roles</div>
                <div class="panel-body">
@@ -39,7 +39,7 @@
             </div>
          </div>
 
-         <div class="col-md-4 col-lg-4">
+         <div class="col-lg-4">
             <div class="panel panel-default" style="box-shadow: 0 0 15px black;">
                <div class="panel-heading">Projects</div>
                <div class="panel-body">
@@ -75,7 +75,7 @@
             </div>
          </div>
 
-         <div class="col-md-4 col-lg-4">
+         <div class="col-lg-4">
             <div class="panel panel-default" style="box-shadow: 0 0 15px black;">
                <div class="panel-heading">Tasks</div>
                <div class="panel-body">
