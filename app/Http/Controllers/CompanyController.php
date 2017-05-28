@@ -11,6 +11,11 @@ class CompanyController extends Controller
 {
     public function getCompany(){
 
+        if(Auth::user()->ifHaveUsers != '[]'){
+
+           return redirect()->route('task.index');
+        }
+
         if(Auth::user()->getProject != '[]'){
 
             return redirect()->route('users.index');
