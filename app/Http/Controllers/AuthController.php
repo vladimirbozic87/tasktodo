@@ -15,7 +15,7 @@ class AuthController extends Controller
     }
 
     public function postSignin(Request $request){
-           
+
         $this->validate($request, [
            'email' => 'required',
            'password' => 'required',
@@ -28,9 +28,22 @@ class AuthController extends Controller
            return redirect()->back()->with('danger', 'Could not sign you in with those details.');
         } else {
 
-           $user = User::where('email', $email)->first();
+           if(Auth::user()->ifHaveUsers != '[]'){
 
-           return redirect()->route('profile.index', ['username' => $user->username])->with('info', 'You are now signed in.');
+             return redirect()->route('task.index')->with('info', 'You are now signed in.');
+           }
+
+           if(Auth::user()->getProject != '[]'){
+
+             return redirect()->route('users.index')->with('info', 'You are now signed in.');
+           }
+
+           if(Auth::user()->getCompany){
+
+             return redirect()->route('company.project')->with('info', 'You are now signed in.');
+           }
+
+           return redirect()->route('company.index')->with('info', 'You are now signed in.');
         }
 
     }
@@ -43,7 +56,7 @@ class AuthController extends Controller
     }
 
     public function postSignup(Request $request){
-           
+
         $this->validate($request, [
            'email' => 'required|unique:users|email|max:255',
            'first_name' => 'required|max:255',

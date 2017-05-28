@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,8 +16,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 
-        'email', 
+        'username',
+        'email',
         'password',
         'first_name',
         'last_name',
@@ -36,7 +37,7 @@ class User extends Authenticatable
     public function getName(){
 
         if($this->first_name && $this->last_name){
-           return "{$this->first_name} {$this->last_name}"; 
+           return "{$this->first_name} {$this->last_name}";
         }
 
         if($this->first_name){
@@ -54,6 +55,26 @@ class User extends Authenticatable
     public function getFirstNameOrUsername(){
 
         return $this->first_name ?: $this->username;
+    }
+
+    public function getCompany(){
+
+      return $this->hasOne('App\Company');
+    }
+
+    public function getProject(){
+
+      return $this->hasMany('App\Project');
+    }
+
+    public function getProjectSession(){
+
+       return $this->hasMany('App\Project')->where('project_session', '1');
+    }
+
+    public function ifHaveUsers(){
+
+       return $this->hasMany('App\UserConnection', 'created_by');
     }
 
 }
