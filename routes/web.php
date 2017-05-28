@@ -55,5 +55,56 @@ Route::get('/signout', [
 
 Route::get('/user/{username}', [
     'uses' => '\App\Http\Controllers\ProfileController@getProfile',
-    'as' => 'profile.index', 
+    'as' => 'profile.index',
+]);
+
+
+/**
+*Company
+*/
+
+Route::get('/company', [
+    'uses' => '\App\Http\Controllers\CompanyController@getCompany',
+    'as' => 'company.index',
+]);
+
+Route::post('/company', [
+    'uses' => '\App\Http\Controllers\CompanyController@postCompany',
+]);
+
+Route::get('/project', [
+    'uses' => '\App\Http\Controllers\CompanyController@getProject',
+		'as' => 'company.project',
+]);
+
+Route::post('/project', [
+    'uses' => '\App\Http\Controllers\CompanyController@postProject',
+]);
+
+
+/**
+*Users
+*/
+
+Route::get('/users', [
+    'uses' => '\App\Http\Controllers\UserController@getUsers',
+		'as' => 'users.index',
+]);
+
+Route::post('/users', [
+    'uses' => '\App\Http\Controllers\UserController@postUsers',
+]);
+
+
+/**
+*Tasks
+*/
+
+Route::get('/tasks', [
+    'uses' => '\App\Http\Controllers\TaskController@getTask',
+		'as' => 'task.index',
+]);
+
+Route::post('/tasks', [
+    'uses' => '\App\Http\Controllers\TaskController@postTask',
 ]);
