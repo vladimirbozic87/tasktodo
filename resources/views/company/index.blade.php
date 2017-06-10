@@ -4,8 +4,6 @@
 
 <div class="left-margin-content">
 
-@if(Auth::user()->role_id == 1)
-
 @include('templates.partials.steps')
 
 <hr>
@@ -40,12 +38,6 @@
 
         </div>
    </div>
-
-@else
-  <div class="alert alert-danger" role="alert">
-      <strong>This account is not confirmed. Please contact your Project Manager</strong>
-  </div>
-@endif
 
 </div>
 

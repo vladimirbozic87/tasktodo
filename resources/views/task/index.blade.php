@@ -33,6 +33,27 @@
                             @endif
                     </div>
 
+                    <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+      	                <label for="status" class="control-label">Status</label>
+      	                <select class="form-control" name="status">
+      	                	<option value="">--</option>
+      					               @foreach($status as $stat)
+
+                                 @if(Request::old('status') == $stat->id)
+                                    @php $selected = "selected" @endphp
+                                 @else
+                                    @php $selected = "" @endphp
+                                 @endif
+
+                                 <option value="{{ $stat->id }}" {{ $selected }}>{{ $stat->status_name }}</option>
+                               @endforeach
+              					</select>
+              					 @if ($errors->has('status'))
+                              <span class="help-block">{{ $errors->first('status') }}</span>
+      	                 @endif
+
+      	            </div>
+
                    <div class="form-group{{ $errors->has('fileToUpload.*') ? ' has-error' : '' }}">
                     <label class="control-label">Select File</label>
                           <input id="input-6" name="fileToUpload[]" type="file" multiple class="file-loading">
