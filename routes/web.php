@@ -48,6 +48,11 @@ Route::get('/signout', [
            'as' => 'auth.signout',
 ]);
 
+Route::get('/block', [
+           'uses' => '\App\Http\Controllers\AuthController@getBlock',
+           'as' => 'auth.block',
+]);
+
 
 /**
 *user Profile
@@ -107,4 +112,9 @@ Route::get('/tasks', [
 
 Route::post('/tasks', [
     'uses' => '\App\Http\Controllers\TaskController@postTask',
+]);
+
+Route::get('/taskline/{username}', [
+	  'uses' => '\App\Http\Controllers\TaskController@getTaskLine',
+	  'as' => 'task.taskline',
 ]);
