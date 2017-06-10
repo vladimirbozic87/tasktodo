@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Company;
 use App\Project;
+use App\UserConnection;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
     public function getCompany(){
+
+        if(Auth::user()->ifHaveTask != '[]'){
+
+         return redirect()->route('task.taskline', ['username' => Auth::user()->username]);
+        }
 
         if(Auth::user()->ifHaveUsers != '[]'){
 
@@ -25,6 +31,16 @@ class CompanyController extends Controller
 
             return redirect()->route('company.project');
         }
+
+           if(Auth::user()->role_id != 1){
+
+              if(UserConnection::where('user_id', Auth::user()->id)->first()){
+
+                    return redirect()->route('task.taskline', ['username' => Auth::user()->username]);
+              }
+
+               return redirect()->route('auth.block')->with('warning', 'This account is not confirmed. Please contact your Project Manager.');
+           }
 
         return view('company.index');
     }
@@ -57,14 +73,21 @@ class CompanyController extends Controller
          'project_info' => 'required|min:6',
       ]);
 
-      Project::create([
-          'user_id' => Auth::user()->id,
-          'company_id' => Auth::user()->getCompany->id,
-          'project_name' => $request->input('project_name'),
-          'project_info' => $request->input('project_info'),
-      ]);
+      $project = new Project;
 
-      return redirect()->route('users.index');
+      $project->user_id = Auth::user()->id;
+      $project->company_id = Auth::user()->getCompany->id;
+      $project->project_name = $request->input('project_name');
+      $project->project_info = $request->input('project_info');
+      $project->project_session = 1;
+
+      $project->save();
+
+      Project::where('id', '!=', $project->id)
+              ->where('user_id', Auth::user()->id)
+              ->update(['project_session' => 0]);
+
+      return redirect()->route('users.index'); 
     }
 
 }

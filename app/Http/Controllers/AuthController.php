@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use App\Role;
+use App\UserConnection;
+use App\Task;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -28,6 +30,11 @@ class AuthController extends Controller
            return redirect()->back()->with('danger', 'Could not sign you in with those details.');
         } else {
 
+           if(Auth::user()->ifHaveTask != '[]'){
+
+             return redirect()->route('task.taskline', ['username' => Auth::user()->username])->with('info', 'You are now signed in.');
+           }
+
            if(Auth::user()->ifHaveUsers != '[]'){
 
              return redirect()->route('task.index')->with('info', 'You are now signed in.');
@@ -42,6 +49,17 @@ class AuthController extends Controller
 
              return redirect()->route('company.project')->with('info', 'You are now signed in.');
            }
+
+              if(Auth::user()->role_id != 1){
+
+                 if(UserConnection::where('user_id', Auth::user()->id)->first()){
+
+                       return redirect()->route('task.taskline', ['username' => Auth::user()->username])->with('info', 'You are now signed in.');
+                 }
+
+                  return redirect()->route('auth.block')->with('warning', 'This account is not confirmed. Please contact your Project Manager.')
+                                                        ->with('info', 'You are now signed in.');
+              }
 
            return redirect()->route('company.index')->with('info', 'You are now signed in.');
         }
@@ -86,6 +104,11 @@ class AuthController extends Controller
        Auth::logout();
 
        return redirect()->route('home');
+    }
+
+    public function getBlock(){
+
+       return view('auth.block');
     }
 
 }

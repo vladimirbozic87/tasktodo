@@ -77,4 +77,9 @@ class User extends Authenticatable
        return $this->hasMany('App\UserConnection', 'created_by');
     }
 
+    public function ifHaveTask(){
+
+      return $this->hasMany('App\Task', 'created_by');       
+    }
+
 }
