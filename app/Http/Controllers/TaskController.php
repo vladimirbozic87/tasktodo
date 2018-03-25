@@ -44,7 +44,7 @@ class TaskController extends Controller
 
          $file->move(base_path() . '/public/uploads/',$name);
 
-         $path[] = '/public/uploads/'.$name;
+         $path[] = '/uploads/'.$name;
       }
     }
 

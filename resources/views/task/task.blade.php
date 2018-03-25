@@ -131,7 +131,8 @@
                 			initialPreviewAsData: true,
                 			initialPreview: [
                            @foreach($url as $valueUrl)
-                              "/tasktodo/{{ $valueUrl }}",
+                              {{--"/tasktodo/{{ $valueUrl }}",--}}
+                                "{{ $valueUrl }}",
                            @endforeach
                             ],
                 			initialPreviewConfig: [
