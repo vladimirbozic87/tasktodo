@@ -20,4 +20,10 @@ class Task extends Model
       'task_file_url',
       'task_end',
   ];
+
+  public function comment(){
+
+    return $this->hasMany('App\Comment', 'task_id');
+  }
+
 }

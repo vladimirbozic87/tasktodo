@@ -52,4 +52,11 @@ class UserController extends Controller
         return redirect()->route('task.index');
     }
 
+    public function allUsers(){
+
+       $userConn = UserConnection::where('created_by', Auth::user()->id)->get();
+
+       return view('users.all')->with('userConn', $userConn);
+    }
+
 }

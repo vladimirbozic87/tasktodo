@@ -100,6 +100,11 @@ Route::post('/users', [
     'uses' => '\App\Http\Controllers\UserController@postUsers',
 ]);
 
+Route::get('/users/all', [
+    'uses' => '\App\Http\Controllers\UserController@allUsers',
+		'as' => 'users.all',
+]);
+
 
 /**
 *Tasks
@@ -117,4 +122,23 @@ Route::post('/tasks', [
 Route::get('/taskline/{username}', [
 	  'uses' => '\App\Http\Controllers\TaskController@getTaskLine',
 	  'as' => 'task.taskline',
+]);
+
+Route::get('/search', [
+	  'uses' => '\App\Http\Controllers\TaskController@getSearch',
+	  'as' => 'task.search',
+]);
+
+
+Route::get('/task/{username}/{task_name}', [
+	  'uses' => '\App\Http\Controllers\TaskController@task',
+	  'as' => 'task.task',
+]);
+
+Route::post('/task/{username}/{task_name}', [
+	  'uses' => '\App\Http\Controllers\TaskController@updateTask',
+]);
+
+Route::post('/comment', [
+	  'uses' => '\App\Http\Controllers\TaskController@postComent',
 ]);

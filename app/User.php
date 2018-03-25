@@ -79,7 +79,12 @@ class User extends Authenticatable
 
     public function ifHaveTask(){
 
-      return $this->hasMany('App\Task', 'created_by');       
+      return $this->hasMany('App\Task', 'created_by');
+    }
+
+    public function getRole(){
+
+      return $this->hasOne('App\Role', 'id', 'role_id')->first()->role_name;
     }
 
 }

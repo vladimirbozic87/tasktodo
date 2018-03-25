@@ -15,4 +15,9 @@ class UserConnection extends Model
       'project_id',
   ];
 
+  public function userConnection(){
+
+    return $this->belongsTo('App\User', 'user_id');
+  }
+
 }

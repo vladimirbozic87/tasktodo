@@ -1,5 +1,5 @@
 <div class="nav-side-menu">
-    <div class="brand">Brand Logo</div>
+    <div class="brand">{{ Auth::user()->getRole() }}</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
         <div class="menu-list">
@@ -32,9 +32,9 @@
                   <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="service">
-                  <li>New Service 1</li>
-                  <li>New Service 2</li>
-                  <li>New Service 3</li>
+                  <li>Project Service</li>
+                  <li>User Service</li>
+                  <li>Task Service</li>
                 </ul>
 
 
@@ -42,23 +42,29 @@
                   <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="new">
-                  <li>New New 1</li>
-                  <li>New New 2</li>
-                  <li>New New 3</li>
+                  <li><a href="{{ route('company.project') }}">Project</a></li>
+                  <li><a href="{{ route('users.index') }}">User</a></li>
+                  <li><a href="{{ route('task.index') }}">Task</a></li>
                 </ul>
 
 
                  <li>
-                  <a href="#">
+                  <a href="{{ route('profile.index', ['username' => Auth::user()->username]) }}">
                   <i class="fa fa-user fa-lg"></i> Profile
                   </a>
-                  </li>
+                 </li>
 
                  <li>
-                  <a href="#">
+                  <a href="{{ route('users.all') }}">
                   <i class="fa fa-users fa-lg"></i> Users
                   </a>
                 </li>
+
+                <li>
+                 <a href="{{ route('task.taskline', ['username' => Auth::user()->username]) }}">
+                 <i class="fa fa-tasks fa-lg"></i> Tasks
+                 </a>
+               </li>
             </ul>
      </div>
 </div>

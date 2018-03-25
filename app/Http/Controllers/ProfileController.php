@@ -12,10 +12,10 @@ class ProfileController extends Controller
        $user = User::where('username', $username)->first();
 
        if(!$user){
-            abort(404);
+            return redirect()->route('home');
        }
 
        return view('profile.index')
-              ->with('user', $user);    
+              ->with('user', $user);
    }
 }
