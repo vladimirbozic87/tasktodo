@@ -138,11 +138,13 @@ class TaskController extends Controller
 
           if($user->role_id == 1){
 
-              $tasks = Task::where('created_by', $user->id)->where($dataSearch)->where('task_name', 'like', "%$textSearch%")->orderBy('id', $orderBySearch)->paginate(12);
+              //$tasks = Task::where('created_by', $user->id)->where($dataSearch)->where('task_name', 'like', "%$textSearch%")->orderBy('id', $orderBySearch)->paginate(12);
+              $tasks = Task::where('created_by', $user->id)->where($dataSearch)->where('task_name', 'ilike', "%$textSearch%")->orderBy('id', $orderBySearch)->paginate(12);
 
           } else {
 
-              $tasks = Task::where('user_id', $user->id)->where($dataSearch)->where('task_name', 'like', "%$textSearch%")->orderBy('id', $orderBySearch)->paginate(12);
+              //$tasks = Task::where('user_id', $user->id)->where($dataSearch)->where('task_name', 'like', "%$textSearch%")->orderBy('id', $orderBySearch)->paginate(12);
+              $tasks = Task::where('user_id', $user->id)->where($dataSearch)->where('task_name', 'ilike', "%$textSearch%")->orderBy('id', $orderBySearch)->paginate(12);
           }
 
           return view('task.taskline')->with('tasks', $tasks)->with('status', $status)->with('userConn', $userConn)
